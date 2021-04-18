@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Usermanagmenet;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-class Register extends Component
-{
-    public $name;
+class Create extends Component
+{	
+	public $name;
     public $email;
     public $password;
     public $password_confirmation;
@@ -19,9 +19,8 @@ class Register extends Component
 
     public function render()
     {
-        return view('livewire.register')->layout('layout.main');
+        return view('livewire.usermanagmenet.create')->layout('layout.layout');
     }
-
     public function submit(){
     	$this->validate();
         $user = new User;
@@ -32,6 +31,7 @@ class Register extends Component
         $this->name = "";
         $this->email = "";
         $this->password = "";
-        return redirect(route('login'));
+        session()->flash('message', 'User Created successfully');
+        return redirect(route('create.user'));
     }
 }

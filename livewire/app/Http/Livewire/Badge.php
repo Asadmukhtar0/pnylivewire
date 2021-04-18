@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class Student extends Component
+class Badge extends Component
 {
     public function render()
     {
-        return view('livewire.student')->layout('layout.layout');
+        return view('livewire.badge')->layout('layout.layout');
     }
 }

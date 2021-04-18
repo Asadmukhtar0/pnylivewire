@@ -21,25 +21,45 @@
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary border-0 mb-0">
+             @if (session()->has('message'))
+                <div class="alert alert-danger alert-sm">
+                    {{ session('message') }}
+                </div>
+            @endif
             <div class="card-body px-lg-5 py-lg-5">
-              <div class="text-center text-muted mb-4">
-                <small>Or sign up <a href="{{ route('register') }}">Here </a></small>
-              </div>
-              <form role="form">
+              <form role="form" wire:submit.prevent="sub">
                 <div class="form-group mb-3">
+                   @error('email') 
+                      <small>
+                        <font color="red">
+                          <b>
+                            * {{ $message }}
+                          </b>
+                        </font>
+                      </small> 
+                    @enderror
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email">
+                    <input class="form-control" wire:model="email" placeholder="Email" type="email">
                   </div>
                 </div>
                 <div class="form-group">
+                   @error('password') 
+                      <small>
+                        <font color="red">
+                          <b>
+                            * {{ $message }}
+                          </b>
+                        </font>
+                      </small> 
+                    @enderror
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password">
+                    <input class="form-control" wire:model="password" placeholder="Password" type="password">
                   </div>
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">
@@ -49,7 +69,7 @@
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary my-4">Sign in</button>
+                  <button type="submit" class="btn btn-primary my-4">Sign in</button>
                 </div>
               </form>
             </div>

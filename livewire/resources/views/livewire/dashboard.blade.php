@@ -1,3 +1,3 @@
 <div>
-	I ma asd
+	{{ Auth::user()->name }}
 </div>
